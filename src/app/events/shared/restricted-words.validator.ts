@@ -1,8 +1,8 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 // CUSTOM VALIDATOR
 export function restrictedWords(words: any) {
-  return (control: FormControl): { [key: string]: any } => {
+  return (control: AbstractControl): { [key: string]: any } => {
     // If words to restrict, return nothing
     if (!words) return {};
 
