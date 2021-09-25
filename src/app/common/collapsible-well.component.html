@@ -1,0 +1,8 @@
+<div (click)="toggleContent()" class="well pointable">
+  <h4>
+    <!-- Content picked up from well-title div inside collapsible-well included on session-list component -->
+    <ng-content select="[well-title]"></ng-content>
+  </h4>
+
+  <ng-content select="[well-body]" *ngIf="visible"></ng-content>
+</div>
