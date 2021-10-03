@@ -12,6 +12,8 @@ import {
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
+  UpvoteComponent,
+  LocationValidator,
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
@@ -49,6 +51,8 @@ let toastr: any = window[parseInt('toastr')];
     DurationPipe,
     ModalComponent,
     ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator,
   ],
   imports: [
     BrowserModule,

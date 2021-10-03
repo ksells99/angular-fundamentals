@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { AuthService } from 'src/app/user/auth.service';
 import { ISession } from '..';
+import { VoterService } from './voter.service';
 
 @Component({
   selector: 'app-session-list',
@@ -15,7 +17,10 @@ export class SessionListComponent implements OnInit, OnChanges {
   // Separate sessions array used to display the filtered data
   visibleSessions: ISession[] = [];
 
-  constructor() {}
+  constructor(
+    public authService: AuthService,
+    private voterService: VoterService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,6 +34,32 @@ export class SessionListComponent implements OnInit, OnChanges {
         ? this.visibleSessions.sort(sortByNameAsc)
         : this.visibleSessions.sort(sortByVotesDesc);
     }
+  }
+
+  toggleVote(session: ISession) {
+    // If current user already voted, call voterService - pass in session and username to remove vote for
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    } else {
+      // Else add current user to voters array for that session
+      this.voterService.addVoter(
+        session,
+        this.authService.currentUser.userName
+      );
+    }
+    if (this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession) {
+    return this.voterService.userHasVoted(
+      session,
+      this.authService.currentUser.userName
+    );
   }
 
   filterSessions(filter: string) {

@@ -113,9 +113,12 @@
       />
     </div>
 
-    <div ngModelGroup="location">
+    <div ngModelGroup="location" #locationGroup="ngModelGroup" validateLocation>
       <div class="form-group">
         <label for="address">Event Location:</label>
+        <em *ngIf="locationGroup?.invalid && locationGroup?.touched"
+          >Please enter either a location or online URL</em
+        >
         <input
           (ngModel)="(newEvent.address)"
           name="address"
@@ -150,7 +153,8 @@
     </div>
 
     <div class="form-group">
-      <label for="onlineUrl">Online Url:</label>
+      <label for="onlineUrl">Online URL:</label>
+      <!-- When input changes, it forced address to re-evaluate validity for address plus online URL -->
       <input
         (ngModel)="(newEvent.onlineUrl)"
         name="onlineUrl"
@@ -158,6 +162,9 @@
         type="text"
         class="form-control"
         placeholder="Online Url..."
+        (change)="
+          locationGroup.control.controls.address.updateValueAndValidity()
+        "
       />
     </div>
     <div
@@ -201,13 +208,14 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
     <button
-      type="button"
+      type="submit"
       [disabled]="newEventForm.invalid"
-      class="btn btn-default"
-      (click)="cancel()"
+      class="btn btn-primary"
     >
+      Save
+    </button>
+    <button type="button" class="btn btn-default" (click)="cancel()">
       Cancel
     </button>
   </form>
