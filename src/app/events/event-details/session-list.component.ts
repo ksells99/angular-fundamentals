@@ -13,6 +13,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions?: ISession[];
   @Input() filterBy: string;
   @Input() sortBy: string;
+  @Input() eventId: any;
 
   // Separate sessions array used to display the filtered data
   visibleSessions: ISession[] = [];
@@ -40,12 +41,14 @@ export class SessionListComponent implements OnInit, OnChanges {
     // If current user already voted, call voterService - pass in session and username to remove vote for
     if (this.userHasVoted(session)) {
       this.voterService.deleteVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );
     } else {
       // Else add current user to voters array for that session
       this.voterService.addVoter(
+        this.eventId,
         session,
         this.authService.currentUser.userName
       );

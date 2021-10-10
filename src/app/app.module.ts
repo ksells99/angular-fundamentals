@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
   EventThumbnailComponent,
   EventService,
-  EventRouteActivatorService,
   EventDetailsComponent,
   CreateEventComponent,
   EventListResolverService,
+  EventResolverService,
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
@@ -59,6 +60,7 @@ let toastr: any = window[parseInt('toastr')];
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     EventService,
@@ -70,7 +72,7 @@ let toastr: any = window[parseInt('toastr')];
       provide: JQ_TOKEN,
       useValue: jquery,
     },
-    EventRouteActivatorService,
+    EventResolverService,
     EventListResolverService,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },

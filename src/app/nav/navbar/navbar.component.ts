@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ISession } from '../../events/shared/event.model';
+import { ISession, IEvent } from '../../events/shared/event.model';
 import { AuthService } from 'src/app/user/auth.service';
 import { EventService } from '../../events/shared/event.service';
 
@@ -11,18 +11,22 @@ import { EventService } from '../../events/shared/event.service';
 export class NavbarComponent implements OnInit {
   searchTerm: string = '';
   foundSessions: ISession[];
+  eventList: IEvent[];
 
   constructor(
     public authService: AuthService,
     private eventService: EventService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.eventService.getEvents().subscribe((events: IEvent[]) => {
+      this.eventList = events;
+    });
+  }
 
   searchSessions(searchTerm: string) {
-    this.eventService.searchSessions(searchTerm).subscribe((sessions: []) => {
+    this.eventService.searchSessions(searchTerm).subscribe((sessions) => {
       this.foundSessions = sessions;
-      console.log(this.foundSessions);
     });
   }
 }

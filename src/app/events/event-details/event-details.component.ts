@@ -21,9 +21,14 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // Whenever ID in url changes, get event details from service - pass in ID from url (+ casts as a number)
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventService.getEvent(+params['id']);
+    this.route.data.forEach((data) => {
+      this.event = data['event'];
       this.addMode = false;
+
+      // this.eventService.getEvent(+params['id']).subscribe((event: IEvent) => {
+      //   this.event = event;
+      //   this.addMode = false;
+      // });
     });
   }
 
@@ -40,8 +45,8 @@ export class EventDetailsComponent implements OnInit {
     session.id = nextId + 1;
     // Add to sessions array
     this.event?.sessions.push(session);
-    // Call updateEvent on service to save
-    this.eventService.updateEvent(this.event!);
+    // Call saveEvent on service to update
+    this.eventService.saveEvent(this.event!).subscribe();
     this.addMode = false;
   }
 
