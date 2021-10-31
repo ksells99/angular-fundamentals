@@ -10,9 +10,9 @@ import { EventService } from '../shared/event.service';
 })
 export class EventDetailsComponent implements OnInit {
   event?: IEvent;
-  addMode: boolean = false;
-  filterBy: string = 'all';
-  sortBy: string = 'votes';
+  addMode = false;
+  filterBy = 'all';
+  sortBy = 'votes';
 
   constructor(
     private eventService: EventService,

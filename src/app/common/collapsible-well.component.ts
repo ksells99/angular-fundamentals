@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./collapsible-well.component.css'],
 })
 export class CollapsibleWellComponent implements OnInit {
-  visible: boolean = false;
+  visible = false;
 
   constructor() {}
 

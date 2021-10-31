@@ -10,11 +10,11 @@ import { FormGroup, Validator, NG_VALIDATORS } from '@angular/forms';
 })
 export class LocationValidator implements Validator {
   validate(formGroup: FormGroup): { [key: string]: any } {
-    let addressControl = formGroup.controls['address'];
-    let cityControl = formGroup.controls['city'];
-    let countryControl = formGroup.controls['country'];
+    const addressControl = formGroup.controls['address'];
+    const cityControl = formGroup.controls['city'];
+    const countryControl = formGroup.controls['country'];
     // Online url is a sibling to location so need to go up to root
-    let onlineUrlControl = (<FormGroup>formGroup.root).controls['onlineUrl'];
+    const onlineUrlControl = (<FormGroup>formGroup.root).controls['onlineUrl'];
 
     // If either location OR online URL present, return null as validation has passed
     if (

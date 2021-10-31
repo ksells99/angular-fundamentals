@@ -7,7 +7,7 @@ export function restrictedWords(words: any) {
     if (!words) return {};
 
     // Map through restricted words and find if form field contains them, return those words if so
-    var invalidWords = words
+    const invalidWords = words
       .map((w: string) => (control.value.includes(w) ? w : null))
       .filter((w: string) => w != null);
 

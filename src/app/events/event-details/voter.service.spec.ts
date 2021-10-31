@@ -14,7 +14,7 @@ describe('VoterService', () => {
   describe('deleteVoter', () => {
     it('should remove voter from list of voters', () => {
       //   Define session and call method on voterService to delete Joe voter
-      var session = { id: 6, voters: ['Joe', 'John'] };
+      const session = { id: 6, voters: ['Joe', 'John'] };
       mockHttp.delete.and.returnValue(of(false));
       voterService.deleteVoter(3, <ISession>session, 'Joe');
 
@@ -24,7 +24,7 @@ describe('VoterService', () => {
 
     it('should call http.delete with correct url', () => {
       //   Define session and call method on voterService to delete Joe voter
-      var session = { id: 6, voters: ['Joe', 'John'] };
+      const session = { id: 6, voters: ['Joe', 'John'] };
       mockHttp.delete.and.returnValue(of(false));
       voterService.deleteVoter(3, <ISession>session, 'Joe');
 
@@ -37,7 +37,7 @@ describe('VoterService', () => {
   describe('addVoter', () => {
     it('should call http.post with correct url', () => {
       //   Define session and call method on voterService to add Joe voter
-      var session = { id: 6, voters: ['John'] };
+      const session = { id: 6, voters: ['John'] };
       mockHttp.post.and.returnValue(of(false));
       voterService.addVoter(3, <ISession>session, 'Joe');
 

@@ -34,8 +34,8 @@ import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // declare let toastr: Toastr;
-let jquery: any = window[parseInt('$')];
-let toastr: any = window[parseInt('toastr')];
+const jquery: any = window[parseInt('$')];
+const toastr: any = window[parseInt('toastr')];
 
 @NgModule({
   declarations: [

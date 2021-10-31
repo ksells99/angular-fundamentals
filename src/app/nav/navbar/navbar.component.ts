@@ -9,7 +9,7 @@ import { EventService } from '../../events/shared/event.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  searchTerm: string = '';
+  searchTerm = '';
   foundSessions: ISession[];
   eventList: IEvent[];
 

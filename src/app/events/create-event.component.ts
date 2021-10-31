@@ -9,7 +9,7 @@ import { EventService } from '.';
 })
 export class CreateEventComponent implements OnInit {
   newEvent: any;
-  isDirty: boolean = true;
+  isDirty = true;
 
   constructor(private eventService: EventService, private router: Router) {}
 
